@@ -1,0 +1,20 @@
+version "3"
+services:
+  jellyfin:
+    image: "jellyfin/jellyfin:latest"
+    container_name: "jellyfin"
+    restart: "always"
+    user: "1000:1000"
+    networks:
+      - "net"
+    volumes:
+     - "./config:/config"
+     - "./cache:/cache"
+     - "/home/service/media:/media:ro"
+     - "/home/service/media/music/:/music:ro"
+    ports:
+     - "8096:8096"
+
+networks:
+  net:
+    external: true
